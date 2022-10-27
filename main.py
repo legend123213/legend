@@ -38,7 +38,7 @@ class Ability(Document):
 class Rating(Document):
     username = StringField(required=True, unique=True)
     rate = StringField()
-class notifcation(Document):
+class Notifcation(Document):
     username = StringField(required=True, unique=True)
     message = StringField()
     acceptance = IntField(-1,1)

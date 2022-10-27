@@ -73,7 +73,7 @@ def show_rate(username):
     return ab.rate
 
 def notif(username,message):
-    notifc = notifcation()
+    notifc = Notifcation()
     notifc.username = username
     notifc.message = message
     notifc.acceptance = 0
@@ -92,6 +92,9 @@ def wait_member(username, name, roll, img, contact,year,group,dept,email,sex,clu
     member.club = club
     member.email = email
     member.save()
+def qur_notif(username):
+    notif = Notifcation.objects(username = username).first()
+    return notif
 def del_member(username):
     nam = quary_user(username)
     nam.delete()
@@ -104,24 +107,26 @@ def test(username,password,roll):
         stu = User.objects(username=username).first()
         if bcrypt.checkpw(password.encode(),stu.password) and roll == True:
             Test = True
-        elif stu.password == password:
+        elif bcrypt.checkpw(password.encode(),stu.password):
             Test = True
         else:
             Test = False
     else:
         Test = False
     return Test
-
+def log_in_user(username):
+    user = User.objects(username = username).first()
+    return user
 
 def quary_user(username):
     member = Member.objects(username=username).first()
     return member
 def quary_ability(username):
     abi = Ability.objects(username=username).first()
-    return abi.workingg
+    return abi.working
 def quary_rate(username):
     rat = Rating.objects(username=username).first()
-    return rat.rate
+    return rat
 def listi():
     d=[]
     icpc = []

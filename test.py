@@ -5,6 +5,17 @@ from fun import *
 from PIL import *
 from lo import *
 from cre import *
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QStackedWidget, QMainWindow, QFileDialog, QCheckBox, QListWidgetItem, QPushButton,QApplication
+
+
+from lo import *
+from test import *
+from home import *
+from admin_home import *
+from signup import *
+from show import *
+from admin_home import *
 class Ui_loginn(object):
     def check_login(self):
             username = self.lineEdit.text()
@@ -15,9 +26,10 @@ class Ui_loginn(object):
 
 
             if bool == True and roll == False:
-                wid.setCurrentIndex(wid.currentIndex() + 1)
-                user = quary_user(username)
-                Take(user)
+
+                user = Take()
+                user.give(username)
+                 wid.setCurrentIndex(wid.currentIndex() + 1)
             elif bool == True and roll == True:
                 wid.setCurrentIndex(wid.currentIndex() + 2)
             else:
@@ -111,3 +123,45 @@ class Ui_loginn(object):
         self.checkBox.setText(_translate("MainWindow", "Admin"))
 
 
+if __name__ == "__main__":
+    import sys
+
+    app = QApplication(sys.argv)
+    Create = QtWidgets.QMainWindow()
+    frontt = QtWidgets.QMainWindow()
+    signup = QtWidgets.QMainWindow()
+    Home = QtWidgets.QMainWindow()
+    adHome = QtWidgets.QMainWindow()
+    about = QtWidgets.QMainWindow()
+    Form = QtWidgets.QWidget()
+    wid = QStackedWidget()
+    # call windows method
+    signupp = Ui_signup()
+    signupp.setupUi(signup)
+    adhome = Ui_adHome()
+    adhome.setupUi(adHome)
+    home = Ui_Home()
+    home.setupUi(Home)
+    ui_form = Ui_Form()
+    ui_form.setupUi(Form)
+    #ui = Ui_Create()
+   # ui.setupUi(Create)
+    logg = Ui_loginn()
+    logg.setupUi(frontt)
+    abu = Ui_about()
+    abu.setupUi(about)
+    # add widgets to stack
+
+
+    wid.addWidget(frontt)
+    wid.addWidget(Home)
+    wid.addWidget(adHome)
+    wid.addWidget(signup)
+    wid.addWidget(Create)
+    wid.addWidget(about)
+    wid.addWidget(Form)
+
+    wid.setFixedWidth(1000)
+    wid.setFixedHeight(1000)
+    wid.show()
+    sys.exit(app.exec_())
