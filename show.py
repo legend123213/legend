@@ -9,6 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QImage, QPixmap
+from admin_home import *
 
 from fun import *
 
@@ -248,11 +249,16 @@ class Ui_about(object):
         about.setStatusBar(self.statusbar)
         #pix = QPixmap(image)
         #self.l_img.setPixmap(pix)
+        self.write()
 
         self.l_img.setScaledContents(True)
         self.l_img.show()
         self.retranslateUi(about)
         QtCore.QMetaObject.connectSlotsByName(about)
+    def write(self):
+            ob = Take()
+            self.l_name.setText(ob.get_name())
+            self.l_email.setText(ob.get_email())
 
     def retranslateUi(self, about):
         _translate = QtCore.QCoreApplication.translate

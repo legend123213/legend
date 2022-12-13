@@ -1,7 +1,6 @@
 import base64
-
+import json
 import bcrypt as bcrypt
-from IPython import display
 
 from main import *
 from mongoengine import connect
@@ -20,12 +19,18 @@ def create_user(username, password, roll):
     use.save()
 
 
-def list_name():
-    nam_ls=[]
-    ls = User.objects()
-    for i in range(len(ls)):
-        nam_ls.append(ls[i].username)
-    return nam_ls
+def set_profile(username):
+    for a in Member.objects(username = username):
+        with open("sample.json", "w") as outfile:
+            json.dump(a.to_json(), outfile)
+        return a.to_json()
+
+def gett():
+    with open('sample.json', 'r') as openfile:
+        # Reading from json file
+        json_object = json.load(openfile)
+        user_profile_dic = json.loads(json_object)
+    return user_profile_dic
 
 
 def create_member(username, name, roll, img, contact,year,group,dept,email,sex,club):
@@ -57,8 +62,11 @@ def get_score(username,rate):
     score.save()
 def imgg(username):
     img_person = Member.objects(username = username).first()
-    Encoded_Image = str(base64.b64encode(ImageGridFsProxy.data))
-    return img_person.img.read()
+    y = img_person.img.read()
+    o = open("/home/legend/PycharmProjects/Icpc/profile pics/"+username + ".jpg", "wb")
+    o.write(y)
+    o.close()
+    return username+".jpg"
 def show_abi(username):
     abi = Ability.objects(username=username).first()
 
@@ -92,6 +100,19 @@ def wait_member(username, name, roll, img, contact,year,group,dept,email,sex,clu
     member.club = club
     member.email = email
     member.save()
+def approve_waiting(username):
+    if wait_member.objects(username=username).first() != None:
+        member = wait_member.objects(username=username).first()
+        create_member(member.username,member.name,member.roll,member.img,member.contact,member.year,member.group,member.dept,member.email,member.sex,member.club)
+    else:
+        return None
+
+
+
+
+
+
+
 def qur_notif(username):
     notif = Notifcation.objects(username = username).first()
     return notif
@@ -174,7 +195,9 @@ def listd():
         d = []
 
     return div
-
+def rat():
+    for Rate in Rating.objects(rate=10):
+        return Rate.username
 
 
 

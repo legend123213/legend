@@ -1,0 +1,1 @@
+"{\"_id\": {\"$oid\": \"634aef79589839d59c722aa6\"}, \"username\": \"Username\", \"name\": \"abel\", \"roll\": false, \"img\": {\"$oid\": \"634aef75589839d59c722aa4\"}, \"email\": \"Email@gmail.com\", \"contact\": \"0923\", \"year\": \"3rd Year\", \"sex\": \"Male\", \"club\": \"ICPC\"}"

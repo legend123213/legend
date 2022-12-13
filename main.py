@@ -17,7 +17,7 @@ class Member(Document):
     year = StringField()
     sex =StringField()
     club =StringField()
-    group = BooleanField()
+    group = StringField()
     dept = StringField()
 
 class waiting(Document):
@@ -27,7 +27,7 @@ class waiting(Document):
     img = ImageField()
     contact = StringField()
     year = IntField()
-    group = BooleanField()
+    group = StringField()
     dept = StringField()
 
 
