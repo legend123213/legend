@@ -1,8 +1,1 @@
-Username
-abel
-0923
-3rd Year
-None
-Email@gmail.com
-Male
-ICPC
+NEW project to be upload in dec 30
